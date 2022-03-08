@@ -18,7 +18,7 @@ import com.organization.mvcproject.model.Review;
 import com.organization.mvcproject.service.GameService;
 
 @Controller
-public class MGLTask1Controller {
+public class GameAndReviewController {
 
 	//TODO 1.0 variable naming convention, improve reference name
 	@Autowired
