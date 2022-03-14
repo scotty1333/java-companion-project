@@ -6,14 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.organization.mvcproject.dao.GameLoopBasedDAO;
+import com.organization.mvcproject.dao.GameDAO;
 import com.organization.mvcproject.model.Game;
 
 @Service
 public class GameServiceImpl implements GameService {
 	
 	@Autowired
-	private GameLoopBasedDAO gameDAO;
+	private GameDAO gameDAO;
 
 	@Override
 	public List<Game> retrieveAllGames() {

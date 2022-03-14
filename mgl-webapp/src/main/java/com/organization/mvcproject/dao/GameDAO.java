@@ -9,7 +9,7 @@ import com.organization.mvcproject.model.Game;
 
 
 @Repository
-public class GameLoopBasedDAO {
+public class GameDAO {
 	
 	//Mock database through static declarations
 	private static Long gameId = new Long(0);
