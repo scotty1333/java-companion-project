@@ -5,34 +5,35 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.organization.mvcproject.model.Game;
+import com.organizaion.bootcamp.mvcproject.api.dao.MockDAO;
+import com.organization.mvcproject.model.GameImpl;
 
 @Repository
-public class GameLoopBasedDAO {
+public class MockDAOImpl implements MockDAO{
 	
 	/*
 	 *  These static declarations allow us to mock a database. 
 	 */
 		private static Long gameId = new Long(0);
-		private static List<Game> games = new ArrayList<>();
+		private static List<GameImpl> games = new ArrayList<>();
 
 		static {
 			games = populateGames();
 		}
 
-		private static List<Game> populateGames() {
+		private static List<GameImpl> populateGames() {
 
-			Game game1 = new Game();
+			GameImpl game1 = new GameImpl();
 			game1.setId(++gameId);
 			game1.setGenre("Sport");
 			game1.setName("Rocket League");
 
-			Game game2 = new Game();
+			GameImpl game2 = new GameImpl();
 			game2.setId(++gameId);
 			game2.setGenre("Shooter");
 			game2.setName("Halo 3");
 
-			Game game3 = new Game();
+			GameImpl game3 = new GameImpl();
 			game3.setId(++gameId);
 			game3.setGenre("MMORPG");
 			game3.setName("Runescape");
@@ -48,14 +49,14 @@ public class GameLoopBasedDAO {
 		 *  end static declarations
 		 */
 		
-		public List<Game> findAllGames() {
+		public List<GameImpl> findAllGames() {
 			return games;
 		}
 
 		
-		public Game saveGame(Game game) {
+		public GameImpl saveGame(GameImpl game) {
 			if( game.getId() != null) {
-				Game foundGame = findGameById(game.getId());
+				GameImpl foundGame = findGameById(game.getId());
 			    if(foundGame != null) {
 			    	//update the game in the list
 			    	for (int i = 0; i < games.size(); i++ ) {
@@ -67,16 +68,16 @@ public class GameLoopBasedDAO {
 			} 
 			
 		    game.setId(++gameId);
-	        games.add((Game) game);
+	        games.add((GameImpl) game);
 	        return game; 
 		
 		}
 		
 		
-		public Game findGameById(Long id) {
+		public GameImpl findGameById(Long id) {
 			
 			//for each loop
-			for (Game g : games) {
+			for (GameImpl g : games) {
 				if(id.equals(g.getId())) {
 					return g; 
 				}
@@ -96,9 +97,9 @@ public class GameLoopBasedDAO {
 		}
 
 		
-		public List<Game> findGamesByGenre(String genre) {
+		public List<GameImpl> findGamesByGenre(String genre) {
 			//for loop
-			List<Game> gamesOfGenre = new ArrayList<>();
+			List<GameImpl> gamesOfGenre = new ArrayList<>();
 				for(int i = 0; i < games.size(); i++) {
 					if( genre == games.get(i).getGenre()) {
 						gamesOfGenre.add(games.get(i));
