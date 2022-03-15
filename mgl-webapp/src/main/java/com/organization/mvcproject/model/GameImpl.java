@@ -1,37 +1,44 @@
 package com.organization.mvcproject.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
-public class Company {
+import com.organization.mvcproject.api.model.Game;
+
+@Component
+public class GameImpl implements Game{
 
 	private Long id;
 	private String name;
-	private List<Game> gamesMade;
+	private String genre;
 
+	@Override
 	public Long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public List<Game> getGamesMade() {
-		return gamesMade;
+	@Override
+	public String getGenre() {
+		return genre;
 	}
 
-	public void setGamesMade(List<Game> gamesMade) {
-		this.gamesMade = gamesMade;
+	@Override
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
+
 }
