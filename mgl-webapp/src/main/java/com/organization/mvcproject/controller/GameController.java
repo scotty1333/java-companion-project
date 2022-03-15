@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.organization.mvcproject.api.model.Game;
 import com.organization.mvcproject.api.service.GameService;
 import com.organization.mvcproject.model.GameImpl;
 
@@ -24,9 +25,9 @@ public class GameController {
 	@Autowired
 	private GameService gameService;
 
-	@GetMapping(value = "/getAll")
-	public ResponseEntity<List<GameImpl>> fetchAllGames() {
-		return new ResponseEntity<List<GameImpl>>(gameService.retrieveAllGames(), HttpStatus.OK);
+	@GetMapping(value = "/")
+	public ResponseEntity<List<Game>> fetchAllGames() {
+		return new ResponseEntity<List<Game>>(gameService.retrieveAllGames(), HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)

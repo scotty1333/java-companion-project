@@ -11,17 +11,30 @@ import com.organization.mvcproject.model.ReviewImpl;
 
 @Controller
 public class HomeController {
-   
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		return "index";
 	}
-	
+
+	@RequestMapping(value = "/review", method = RequestMethod.GET)
+	public ModelAndView review() {
+		return new ModelAndView("review", "command", new ReviewImpl());
+	}
+
+	@RequestMapping(value = "/addReview", method = RequestMethod.POST)
+	public ModelAndView addReview(ReviewImpl reviewImpl, ModelMap model) {
+		if(reviewImpl.getAuthor().equals("")) {
+			reviewImpl.setAuthor("anonymous");
+		}
+		return new ModelAndView("result", "submittedReview", reviewImpl);
+	}
+
 	@RequestMapping(value = "/games", method = RequestMethod.GET)
 	public ModelAndView game() {
 		return new ModelAndView("gamesPage", "command", new GameImpl());
 	}
-	
+   
 	@RequestMapping(value="/hello")
     public ModelAndView hello(@RequestParam(required=false, defaultValue="World") String name) {
         ModelAndView ret = new ModelAndView("home");
@@ -33,19 +46,6 @@ public class HomeController {
         
         return ret;
     }
-	
-	@RequestMapping(value = "/review", method = RequestMethod.GET)
-	public ModelAndView review() {
-		return new ModelAndView("reviewCreatePage", "command", new ReviewImpl());
-	}
-
-	@RequestMapping(value = "/addReview", method = RequestMethod.POST)
-	public ModelAndView addReview(ReviewImpl review, ModelMap model) {
-		if(review.getAuthor().equals("")) {
-			review.setAuthor("anonymous");
-		}
-		return new ModelAndView("reviewDetailPage", "submittedReview", review);
-	}
    
 	
 	private String testingMethod() {
