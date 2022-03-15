@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.organization.mvcproject.model.Game;
+import com.organization.mvcproject.model.GameImpl;
 
 
 @Repository
@@ -13,25 +13,25 @@ public class GameDAO {
 	
 	//Mock database through static declarations
 	private static Long gameId = new Long(0);
-	private static List<Game> games = new ArrayList<Game>();
+	private static List<GameImpl> games = new ArrayList<GameImpl>();
 
 	static {
 		games = populateGames();
 	}
 
-	private static List<Game> populateGames() {
+	private static List<GameImpl> populateGames() {
 
-		Game game1 = new Game();
+		GameImpl game1 = new GameImpl();
 		game1.setId(++gameId);
 		game1.setGenre("Sport");
 		game1.setName("Rocket League");
 
-		Game game2 = new Game();
+		GameImpl game2 = new GameImpl();
 		game2.setId(++gameId);
 		game2.setGenre("Shooter");
 		game2.setName("Halo 3");
 
-		Game game3 = new Game();
+		GameImpl game3 = new GameImpl();
 		game3.setId(++gameId);
 		game3.setGenre("MMORPG");
 		game3.setName("Runescape");
@@ -43,13 +43,13 @@ public class GameDAO {
 		return games;
 	}
 	
-	public List<Game> findAllGames() {
+	public List<GameImpl> findAllGames() {
 		return games;
 	}
 
-	public Game saveGame(Game game) {
+	public GameImpl saveGame(GameImpl game) {
 		if(game.getId() != null) {
-			Game foundGame = findGameById(game.getId());
+			GameImpl foundGame = findGameById(game.getId());
 			if(foundGame != null) {
 				//update the game in the list
 				for(int i=0; i<games.size(); i++) {
@@ -65,8 +65,8 @@ public class GameDAO {
 		return game;
 	}
 	
-	public Game findGameById(Long id) {
-		for(Game g : games) {
+	public GameImpl findGameById(Long id) {
+		for(GameImpl g : games) {
 			if(id.equals(g.getId())) {
 				return g;
 			}
@@ -85,8 +85,8 @@ public class GameDAO {
 		return false;
 	}
 	
-	public List<Game> findGameByGenre(String genre) {
-		List<Game> gamesByGenre = new ArrayList<>();
+	public List<GameImpl> findGameByGenre(String genre) {
+		List<GameImpl> gamesByGenre = new ArrayList<>();
 		for(int i=0; i<games.size(); i++) {
 			if(genre.equals(games.get(i).getGenre())) {
 				gamesByGenre.add(games.get(i));
