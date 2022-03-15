@@ -23,9 +23,9 @@ public class GameController {
 	@Autowired
 	private GameService gameService;
 
-	@GetMapping(value = "/getAll")
+	@GetMapping(value = "/")
 	public ResponseEntity<List<Game>> fetchAllGames() {
-		return new ResponseEntity<List<Game>>(gameService.retrieveAllGames(), HttpStatus.OK);
+		return new ResponseEntity<>(gameService.retrieveAllGames(), HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
