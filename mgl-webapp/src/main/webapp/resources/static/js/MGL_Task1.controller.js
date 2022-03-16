@@ -17,6 +17,17 @@ angular.module('MGL_Task1_app').controller('MGL_Task1_Controller',
 				self.fetchAllGames();
 				});
 			}
-
+			
+			self.deleteGame = function(gameToDelete) {
+				return MGL_Task1_Service.deleteGame(gameToDelete.id).then( function() {
+				self.fetchAllGames();
+				});
+			}
+			
+			self.selectGame = function(gameToUpdate) {
+				self = gameToUpdate;
+			}
+			
+			
 			self.fetchAllGames();
 		} ]);
